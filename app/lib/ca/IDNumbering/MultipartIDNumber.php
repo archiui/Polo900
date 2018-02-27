@@ -652,14 +652,17 @@ class MultipartIDNumber extends IDNumber {
 		if ((bool)$va_element_info['sequence_by_type']) {
 			$vn_type_id = (int)$t_instance->getTypeIDForCode($this->getType());
 		}
-		
+
+// Promemoria: modificato qui sotto:
+// ORDER BY LENGTH($vs_sort_field) DESC, $vs_sort_field DESC
+
 		if ($qr_res = $this->opo_db->query($x="
 			SELECT $vs_field FROM ".$vs_table."
 			WHERE
 				$vs_field LIKE ? ".(($vn_type_id > 0) ? " AND type_id = {$vn_type_id}" : "")."
 				".($t_instance->hasField('deleted') ? " AND (deleted = 0)" : '')."
 			ORDER BY
-				$vs_sort_field DESC
+				LENGTH($vs_sort_field) DESC, $vs_sort_field DESC
 		", ($y=$vs_stub.(($vs_stub != '') ? $vs_separator.'%' : '%')))) {
 			if ($this->opo_db->numErrors()) {
 				return "ERR";

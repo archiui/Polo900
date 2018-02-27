@@ -158,7 +158,7 @@
 		 * @return int id for the edited label, false on error or null if no row is loaded
 		 */
 		public function editLabel($pn_label_id, $pa_label_values, $pn_locale_id, $pn_type_id=null, $pb_is_preferred=false, $pa_options=null) {
-			if (!($vn_id = $this->getPrimaryKey())) { return null; }
+			if (!($vn_id = $this->getPrimaryKey())) { echo "EDPL2"; return null; }
 			
 			$vb_truncate_long_labels = caGetOption('truncateLongLabels', $pa_options, false);
 			$pb_queue_indexing = caGetOption('queueIndexing', $pa_options, false);
@@ -300,7 +300,7 @@
 		 * 
 		 */
  		public function replaceLabel($pa_label_values, $pn_locale_id, $pn_type_id=null, $pb_is_preferred=true, $pa_options = null) {
- 			if (!($vn_id = $this->getPrimaryKey())) { return null; }
+ 			if (!($vn_id = $this->getPrimaryKey())) { echo "REPL1"; return null; }
  			
  			$va_labels = $this->getLabels(array($pn_locale_id), $pb_is_preferred ? __CA_LABEL_TYPE_PREFERRED__ : __CA_LABEL_TYPE_NONPREFERRED__);
  			
@@ -1538,7 +1538,7 @@
  				ORDER BY
  					loc.name
  			", (int)$vn_id);
- 			
+
  			$va_labels = array();
  			$t_label->clear();
  			while($qr_res->nextRow()) {

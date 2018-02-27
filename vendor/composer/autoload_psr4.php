@@ -12,6 +12,7 @@ return array(
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
     'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'MongoDB\\' => array($vendorDir . '/mongodb/mongodb/src'),
     'Hoa\\Visitor\\' => array($vendorDir . '/hoa/visitor'),
     'Hoa\\Ustring\\' => array($vendorDir . '/hoa/ustring'),
     'Hoa\\Stream\\' => array($vendorDir . '/hoa/stream'),

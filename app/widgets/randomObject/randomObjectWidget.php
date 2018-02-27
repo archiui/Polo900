@@ -66,9 +66,9 @@
 			if(sizeof($va_random_item) > 0){
 				foreach($va_random_item as $vn_object_id => $va_object_info) {
 					$t_object->load($vn_object_id);
-					$va_rep = $t_object->getPrimaryRepresentation(array('medium'));
+					$va_rep = $t_object->getPrimaryRepresentation(array('small'));
 					$this->opo_view->setVar('object_id', $vn_object_id);
-					$this->opo_view->setVar('image', $va_rep["tags"]["medium"]);
+					$this->opo_view->setVar('image', $va_rep["tags"]["small"]);
 					$this->opo_view->setVar('label', $t_object->getLabelForDisplay());
 				}
 			}

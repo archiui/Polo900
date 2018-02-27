@@ -49,7 +49,12 @@
 ?>
 	<div class="sectionBox">
 <?php
-
+// $this->setVar('request', $this->opo_request);
+// $this->setVar('user', $this->opo_request->user);
+			AssetLoadManager::register('treejs');
+			$this->setVar('user', $this->opo_request->user);
+			$this->setVar('current_id', $vn_object_id);
+			print $this->render("widget_object_hierarchy_html.php", true);
 			print caFormTag($this->request, 'Save/'.$this->request->getActionExtra().'/object_id/'.$vn_object_id, 'ObjectEditorForm', null, 'POST', 'multipart/form-data');
 		
 			$va_bundle_list = array();
@@ -79,7 +84,33 @@
 ?>
 		</form>
 	</div>
-
 	<div class="editorBottomPadding"><!-- empty --></div>
 	
 	<?php print caSetupEditorScreenOverlays($this->request, $t_object, $va_bundle_list); ?>
+
+<!-- Archiui -->
+<?php
+	$container = array();
+	$type_id = $t_object->get('type_id');
+	$tsk = array(290 => 1752, 289 => 1753, 288 => 1754, 286 => 1755, 2565 => 2570, 287 => 1756 );
+	foreach ($va_bundle_list as $screen) {
+		if ($screen['bundle'] == 'ca_attribute_tsk') {
+			$container = $screen;
+			break;
+		}
+	}
+?>
+<!--<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		var container = <?php echo json_encode($container) ?>;
+		jQuery('.bundleLabel div#' + container['id'] + '_attribute_195').ready(function (e) {
+			var options = jQuery('.bundleLabel div#' + container['id'] + '_attribute_195').find('.attributeListItem .formLabel select option');
+			options.each(function(index, option) {
+				if (option.value == '<?php echo $tsk[$type_id]; ?>') {
+					jQuery(option).prop('selected', 'selected');
+				}
+			});
+
+		});
+	});
+</script>-->

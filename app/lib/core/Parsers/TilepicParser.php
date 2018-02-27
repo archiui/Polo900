@@ -2042,8 +2042,10 @@ class TilepicParser {
 					$y["offset"] = TilepicParser::unpackLargeInt($y["offset"]);
 					
 					$vn_len = $y["offset"] - $x["offset"];
+                    #Promemoria
+                    if ($vn_len>2147483647) $vn_len=2147483647;
 					if (!fseek($fh, $x["offset"])) {
-						
+					    #error_log("vn_len: $vn_len");
 						return fread($fh, $vn_len);
 						return true;
 					} else {

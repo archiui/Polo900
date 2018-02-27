@@ -106,6 +106,71 @@
 			</style>
 			<![endif]-->
 		<!-- super fish end menus -->
+
+        <?php
+            if (file_exists(__CA_CACHE_FILEPATH__."/finesecuzione")) {
+        ?>
+            <style type="text/css">
+                [data-notify="progressbar"] {
+                    margin-bottom: 0px;
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 5px;
+                }
+
+                [data-notify="container"][class*="alert-pastel-"] {
+                    background-color: #209B5A;
+                    border-width: 0px;
+                    border-radius: 0px;
+                    box-shadow: 5px 5px 5px rgba(51, 51, 51, 0.3);
+                    letter-spacing: 1px;
+                    padding: 2%;
+                    width: 300px;
+
+                }
+
+                [data-notify="container"][class*="alert-pastel-"] > [data-notify="title"] {
+                    display: block;
+                    font-weight: 700;
+                    margin-bottom: 5px;
+                    color: #FFF;
+                }
+                [data-notify="container"][class*="alert-pastel-"] > [data-notify="message"] {
+                    font-weight: 400;
+                    color: #FFF;
+                }
+
+                [data-notify="icon"]   {
+                    width: 15%;
+                    vertical-align: top;
+                    color: #FFF;
+                }
+            </style>
+            <script src="<?php print __CA_URL_ROOT__; ?>/app/plugins/strumenti/resources/dist/libs/bootstrap-notify.min.js" type="text/javascript"></script>
+            <script defer>
+                jQuery(document).ready(function () {
+                    jQuery.notify({
+                        icon: "fa fa-bullhorn",
+                        message: "I salvataggio della gestione archivio ha terminato"
+                    },
+                    {
+                        type: 'pastel-warning',
+                        delay: 1500,
+                        allow_dismiss: false,
+                        placement: {
+                            from: "bottom",
+                            align: "left"
+                        },
+                        offset: 60,
+                    });
+                });
+            </script>
+        <?php
+                unlink(__CA_CACHE_FILEPATH__."/finesecuzione");
+            }
+        ?>
 	</head>	
 	<body>
 		<div align="center">
