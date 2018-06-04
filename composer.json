@@ -1,17 +1,18 @@
 {
   "require-dev": {
-    "phpunit/phpunit": "4.3.*",
-    "maximebf/debugbar": ">=1.0.0",
-    "doctrine/cache": "1.4.*",
-    "elasticsearch/elasticsearch": "~2.0",
-    "monolog/monolog": "~1.0",
-    "knplabs/github-api": "~1.2",
-    "ezyang/htmlpurifier": "~4.6",
-    "easyrdf/easyrdf": "0.9.*",
-    "hoa/compiler": "~2.15",
-    "hoa/visitor": "~1.15"
+    "phpunit/phpunit": "4.3.5",
+    "maximebf/debugbar": "1.11.0",
+    "doctrine/cache": "1.4.4",
+    "elasticsearch/elasticsearch": "2.1.4",
+    "monolog/monolog": "1.17.2",
+    "knplabs/github-api": "1.5.1",
+    "ezyang/htmlpurifier": "4.7.0",
+    "easyrdf/easyrdf": "0.9.1",
+    "hoa/compiler": "2.15.10.29",
+    "hoa/visitor": "1.15.08.17"
   },
   "require": {
-    "mongodb/mongodb": "~1.1.1"
+    "mongodb/mongodb": "1.1.2",
+    "phpoffice/phpword": "0.13.*"
   }
 }

@@ -1,0 +1,142 @@
+{
+   "186": {
+        "title": {
+            "bold": true,
+            "size": 17,
+            "name": "Palatino"
+        },
+        "data": {
+            "italic": true,
+            "size": 12,
+            "name": "Palatino"
+        },
+        "index": {
+            "size": 10,
+            "name": "Palatino"
+        },
+        "metadati": {
+            "size": 12,
+            "name": "Palatino"
+        }
+    },
+    "189": {
+        "title": {
+            "bold": true,
+            "size": 16,
+            "name": "Palatino"
+        },
+        "data": {
+            "italic": true,
+            "size": 12,
+            "name": "Palatino"
+        },
+        "index": {
+            "size": 10,
+            "name": "Palatino"
+        },
+        "metadati": {
+            "size": 12,
+            "name": "Palatino"
+        }
+    },
+    "187" : {
+        "title": {
+            "bold": true,
+            "size": 15,
+            "name": "Palatino"
+        },
+        "data": {
+            "italic": true,
+            "size": 12,
+            "name": "Palatino"
+        },
+        "index": {
+            "size": 10,
+            "name": "Palatino"
+        },
+        "metadati": {
+            "size": 12,
+            "name": "Palatino"
+        }
+    },
+    "188": {
+        "title": {
+            "bold": true,
+            "size": 14,
+            "name": "Palatino"
+        },
+        "data": {
+            "italic": true,
+            "size": 12,
+            "name": "Palatino"
+        },
+        "index": {
+            "size": 10,
+            "name": "Palatino"
+        },
+        "metadati": {
+            "size": 12,
+            "name": "Palatino"
+        }
+    },
+    "192": {
+        "title": {
+            "bold": true,
+            "size": 13,
+            "name": "Palatino"
+        },
+        "data": {
+            "italic": true,
+            "size": 12,
+            "name": "Palatino"
+        },
+        "index": {
+            "size": 10,
+            "name": "Palatino"
+        },
+        "metadati": {
+            "size": 12,
+            "name": "Palatino"
+        }
+    },
+    "278": {
+        "title": {
+            "bold": true,
+            "size": 12,
+            "name": "Palatino"
+        },
+        "data": {
+            "italic": true,
+            "size": 12,
+            "name": "Palatino"
+        },
+        "index": {
+            "size": 10,
+            "name": "Palatino"
+        },
+        "metadati": {
+            "size": 12,
+            "name": "Palatino"
+        }
+    },
+    "279": {
+        "title": {
+            "bold": true,
+            "size": 12,
+            "name": "Palatino"
+        },
+        "data": {
+            "italic": true,
+            "size": 12,
+            "name": "Palatino"
+        },
+        "index": {
+            "size": 10,
+            "name": "Palatino"
+        },
+        "metadati": {
+            "size": 12,
+            "name": "Palatino"
+        }
+    }
+}

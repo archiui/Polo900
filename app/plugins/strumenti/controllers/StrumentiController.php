@@ -261,11 +261,10 @@ class StrumentiController extends ActionController {
                 unset($_POST['_formName'], $_POST['object']);
 
                 $computate = array();
-                foreach ($_POST as $key => $screen_id)  {
-
+               foreach ($_POST as $key => $screen_id)  {
                     if ($screen_id != "") {
                         $obj_type = explode("#", $key);
-                        $computate[str_replace("_", " ", $obj_type[1])] = $screen_id;
+                        $computate[end($obj_type)] = $screen_id;
                     }
                 }
 
