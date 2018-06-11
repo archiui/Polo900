@@ -21,7 +21,7 @@ function saveChildren( $children, $parent_id = "null" ) {
     foreach ( $children as $posizione => $nodo ) {
         $id = $nodo->id;
         ( $parent_id == 'null' ) ? $hier_object_id = $id : $hier_object_id = $parent_id;
-        $o_db->query( "UPDATE ca_objects SET parent_id = $parent_id, hier_object_id = $hier_object_id, posizione = $posizione, ordine = ($posizione + 1)  WHERE object_id = $id" );
+        $o_db->query( "UPDATE ca_objects SET parent_id = $parent_id, hier_object_id = $hier_object_id, ordine = ($posizione + 1)  WHERE object_id = $id" );
         if ( isset( $nodo->children ) ) {
             saveChildren( $nodo->children, $id );
         }
@@ -48,7 +48,7 @@ $operation = $_GET["operation"];
 $return    = array();
 switch ( $operation ) {
     case "get_children":
-        $order = empty( $_GET["order"] ) ? "t.ordine, posizione" : $_GET["order"];
+        $order = empty( $_GET["order"] ) ? "t.ordine" : $_GET["order"];
         $verso = empty( $_GET["verso"] ) ? "ASC" : $_GET["verso"];
         $user_id = empty( $_GET['user_id'] ) ? 1 : $_GET["user_id"];
         $user_groups = empty( $_GET['user_groups'] ) ? null : $_GET["user_groups"];
@@ -64,7 +64,7 @@ switch ( $operation ) {
         if ($user_groups == 2 || in_array($user_groups, 2)) {
             //query per recuperare gli oggetti
             $query = "
-                SELECT t.object_id as id, t.parent_id,t.type_id as type, t.posizione, l.name as text, d.date as date, (SELECT COUNT(*) FROM ca_objects p WHERE t.object_id = p.parent_id) hasChildren
+                SELECT t.object_id as id, t.parent_id,t.type_id as type, l.name as text, d.date as date, (SELECT COUNT(*) FROM ca_objects p WHERE t.object_id = p.parent_id) hasChildren
                                         FROM
                                         ca_objects t
                                         inner join
@@ -82,7 +82,7 @@ switch ( $operation ) {
                                         ) d on (t.object_id = d.row_id)
                     where deleted=0 and l.is_preferred = 1 and ";
         } else {
-            $query = "SELECT t.object_id as id, t.parent_id,t.type_id as type, t.posizione, l.name as text, d.date as date, (SELECT COUNT(*) FROM ca_objects p WHERE t.object_id = p.parent_id) hasChildren
+            $query = "SELECT t.object_id as id, t.parent_id,t.type_id as type, l.name as text, d.date as date, (SELECT COUNT(*) FROM ca_objects p WHERE t.object_id = p.parent_id) hasChildren
                       FROM
                       ((ca_objects t inner join ca_object_labels l on (t.object_id=l.object_id) INNER JOIN ca_acl ON t.object_id = ca_acl.row_id AND ca_acl.table_num = 57))
                                         left join
@@ -109,15 +109,12 @@ switch ( $operation ) {
         } else {
             $query .= "t.parent_id = " . $_GET['id'];
         }
-        $query .= " GROUP BY id ";
+        $query .= " GROUP BY id,t.parent_id,t.type_id, l.name, d.date ";
         $query .= " ORDER BY $order $verso";
         $qr_result = $o_db->query( $query );
         $i         = 0;
         $o_db->beginTransaction();
         while ( $qr_result->nextRow() ) {
-            if ( $order != "t.ordine, posizione" ) {
-                $o_db->query( "UPDATE ca_objects SET posizione=$i WHERE object_id=" . $qr_result->get( "id" ) );
-            }
             $nodo           = new stdClass();
             $nodo->id = $qr_result->get( "id" );
             $nodo->children = $qr_result->get("hasChildren")>0;
@@ -345,7 +342,7 @@ switch ( $operation ) {
         if ($user_groups == 2 || (is_array($user_groups) && in_array($user_groups, 2))) {
             //query per recuperare gli oggetti
             $query = "
-                SELECT t.object_id as id, t.parent_id,t.type_id as type, t.posizione, l.name as text, d.date as date, (SELECT COUNT(*) FROM ca_objects p WHERE t.object_id = p.parent_id) hasChildren
+                SELECT t.object_id as id, t.parent_id,t.type_id as type, l.name as text, d.date as date, (SELECT COUNT(*) FROM ca_objects p WHERE t.object_id = p.parent_id) hasChildren
                     FROM
                     ca_objects t
                     inner join
@@ -363,7 +360,7 @@ switch ( $operation ) {
                     ) d on (t.object_id = d.row_id)
                     where deleted=0 and l.is_preferred = 1 and ";
         } else {
-            $query = "SELECT t.object_id as id, t.parent_id,t.type_id as type, t.posizione, l.name as text, d.date as date, (SELECT COUNT(*) FROM ca_objects p WHERE t.object_id = p.parent_id) hasChildren
+            $query = "SELECT t.object_id as id, t.parent_id,t.type_id as type, l.name as text, d.date as date, (SELECT COUNT(*) FROM ca_objects p WHERE t.object_id = p.parent_id) hasChildren
                       FROM
                       ((ca_objects t inner join ca_object_labels l on (t.object_id=l.object_id) INNER JOIN ca_acl ON t.object_id = ca_acl.row_id AND ca_acl.table_num = 57))
                             left join
@@ -390,8 +387,8 @@ switch ( $operation ) {
         } else {
             $query .= "t.parent_id = " . $_POST['id'];
         }
-        $query .= " GROUP BY id ";
-        $query .= " ORDER BY t.ordine, posizione ASC";
+        $query .= " GROUP BY id,t.parent_id,t.type_id, l.name, d.date";
+        $query .= " ORDER BY t.ordine ASC";
         $qr_result = $o_db->query( $query );
         $i         = 0;
         $o_db->beginTransaction();
@@ -530,9 +527,9 @@ switch ( $operation ) {
                    WHERE ca_editor_ui_screens.`ui_id` =
                          (SELECT `ui_id`
                           FROM `ca_editor_uis`
-                          WHERE `editor_code` = 'editor-schede'))
+                          WHERE `editor_code` = 'editor_schede' OR `editor_code` = 'editor-schede'))
             AND `bundle_name` LIKE '%ca_attribute%' AND `ca_metadata_elements`.datatype != 22
-            GROUP BY name
+            GROUP BY name,ca_metadata_elements.element_code, ca_metadata_elements.datatype, ca_metadata_elements.element_id
             ORDER BY name
 QUERY;
 

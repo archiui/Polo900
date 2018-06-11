@@ -38,3 +38,15 @@ Note that 1.6 is the first version of CollectiveAccess compatible with PHP 7.
 ----Other modules:----
 
    Pawtucket: https://github.com/collectiveaccess/pawtucket2 (The public access front-end application for Providence)
+
+
+Istruzioni
+-----------------------
+* clonare il repository
+* cp setup.php-dist setup.php
+* settare i puntamenti al db su setup.php
+* andare sul sito e far partire l'installer
+* selezionare come profilo polodel900
+* Loggati come amministrazione
+* Settari i ruoli e i gruppi di accesso all'amministratore da "Gestisci -> profili di accesso"
+* Settare le varie ACL desiderate.

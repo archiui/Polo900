@@ -163,7 +163,6 @@ $administrator = $po_request->user->canDoAction( "is_administrator" );
         	},
         })
         .done(function(data) {
-        	console.log(data);
             metadata = data.data;
             if (typeof data.select !== 'undefined' )
                 selected = data.select;

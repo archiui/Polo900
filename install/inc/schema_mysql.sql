@@ -1563,7 +1563,7 @@ create table ca_objects
    status                         tinyint unsigned               not null default 0,
    deleted                        tinyint unsigned               not null default 0,
    rank                           int unsigned                   not null default 0,
-   ordine                           int unsigned                   not null default 0,
+   ordine                           int unsigned                 null default 0,
    acl_inherit_from_ca_collections tinyint unsigned              not null default 0,
    acl_inherit_from_parent         tinyint unsigned              not null default 0,
    access_inherit_from_parent      tinyint unsigned              not null default 0,

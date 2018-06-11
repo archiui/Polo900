@@ -4,7 +4,7 @@ Allow from all
 <FilesMatch ".*\.[A-Za-z0-9]+">
 	Deny from all
 </FilesMatch>
-<FilesMatch "^(index\.php)?$">
+<FilesMatch "^(index\.php|ajax\.php)?$">
         Allow from all
 </FilesMatch>
 <FilesMatch "^(index|service|tilepic)\.php$">
