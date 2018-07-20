@@ -52,3 +52,35 @@ Istruzioni
 * Loggati come amministrazione
 * Settari i ruoli e i gruppi di accesso all'amministratore da "Gestisci -> profili di accesso"
 * Settare le varie ACL desiderate.
+
+
+Abilitare ACL
+-----------------------
+Per abilitare il meccanismo delle ACL nell'installazione bisogna modificare il file di configurazione: ```app/conf/app.conf```.
+I passaggi necessari sono:
+* copiare il file ```app/conf/app.conf``` in ```app/conf/local/```
+* aprire il suddetto file
+* modificare le opzioni come segue:
+```
+ perform_item_level_access_checking = 1
+ default_item_access_level = __CA_ACL_EDIT_DELETE_ACCESS__
+```
+* aggiungere le impostazioni seguenti:
+```
+ca_item_access_level = __CA_ACL_NO_ACCESS__
+set_access_user_groups_for_ca_objects = 1
+set_access_user_groups_for_ca_entities = 0
+set_access_user_groups_for_ca_places = 0
+set_access_user_groups_for_ca_occurrences = 0
+set_access_user_groups_for_ca_collections = 0
+set_access_user_groups_for_ca_loans = 0
+set_access_user_groups_for_ca_movements = 0
+set_access_user_groups_for_ca_object_lots = 0
+set_access_user_groups_for_ca_object_representations = 0
+set_access_user_groups_for_ca_representation_annotations = 0
+set_access_user_groups_for_ca_storage_locations = 0
+set_access_user_groups_for_ca_tour_stops = 0
+set_access_user_groups_for_ca_tours = 0
+
+access_from_parent = 1
+```
