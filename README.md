@@ -84,3 +84,21 @@ set_access_user_groups_for_ca_tours = 0
 
 access_from_parent = 1
 ```
+* copiare il file ```app/conf/assets.conf``` in ```app/conf/local/```
+* aprire il suddetto file
+* inserire le seguenti righe nella sezione "packages":
+```
+ treejs = {
+	    jstree = jstree.js,
+	    themes = themes/proton/style.css,
+	    bootstrap = libs/bootstrap/css/bootstrap-grids.min.css
+	} 
+```
+* inserire le seguenti righe nella sezione "loadSets":
+```
+	treejs = [
+        treejs/jstree, treejs/themes
+	]
+```
+
+
