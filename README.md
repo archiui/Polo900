@@ -62,8 +62,9 @@ I passaggi necessari sono:
 * aprire il suddetto file
 * modificare le opzioni come segue:
 ```
- perform_item_level_access_checking = 1
- default_item_access_level = __CA_ACL_EDIT_DELETE_ACCESS__
+ca_objects_preferred_label_type_list = tipologia_titolo
+perform_item_level_access_checking = 1
+default_item_access_level = __CA_ACL_EDIT_DELETE_ACCESS__
 ```
 * aggiungere le impostazioni seguenti:
 ```
