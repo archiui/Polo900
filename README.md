@@ -102,4 +102,6 @@ access_from_parent = 1
 	]
 ```
 
-
+Copiare le impostazione di Polo900
+-----------------------
+Se si ha la necessità di copiare la configurazione identica dell'installazione di Polo del 900 si può semplicemente copiare il file ```app.conf``` dentro la cartella ```app/conf/local/```. Ovviamente se si sceglie questa strada non serve abilitare le **ACL** inquanto già abilitate nel file  ```app.conf```
